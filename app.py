@@ -897,7 +897,7 @@ class ResumeApp:
             print("Validating form data...")
             print(f"Session state form data: {st.session_state.form_data}")
             print(
-                f"Email input value: {st.session_state.get('email_input','')}")
+                f"Email input value: {st.session_state.get('email_input', '')}")
 
             # Get the current values from form
             current_name = st.session_state.form_data['personal_info']['full_name'].strip(
@@ -951,32 +951,35 @@ class ResumeApp:
                             st.success("✅ Resume generated successfully!")
 
                             # Show snowflake effect
-                            st.snow()
+                            # st.snow()
 
                             st.download_button(
                                 label="Download Resume 📥",
                                 data=resume_buffer,
                                 file_name=f"{current_name.replace(' ', '_')}_resume.docx",
                                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                                on_click=lambda: st.balloons()
+                                # on_click=lambda: st.balloons()
                             )
                         except Exception as db_error:
                             print(
-                                f"Warning: Failed to save to database: { str(db_error)}")
+                                f"Warning: Failed to save to database: {str(db_error)}")
                             # Still allow download even if database save fails
-                            st.warning("⚠️ Resume generated but couldn't be saved to database")
+                            st.warning(
+                                "⚠️ Resume generated but couldn't be saved to database")
 
                             # Show balloons effect
-                            st.balloons()
+                            # st.balloons()
 
                             st.download_button(
                                 label="Download Resume 📥",
                                 data=resume_buffer,
                                 file_name=f"{current_name.replace(' ', '_')}_resume.docx",
                                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                                on_click=lambda: st.balloons())
+                                # on_click=lambda: st.balloons()
+)
                     else:
-                        st.error("❌ Failed to generate resume. Please try again.")
+                        st.error(
+                            "❌ Failed to generate resume. Please try again.")
                         print("Resume buffer was None")
                 except Exception as gen_error:
                     print(f"Error during resume generation: {str(gen_error)}")
@@ -1362,7 +1365,7 @@ class ResumeApp:
                             return
 
                         # Show snowflake effect
-                        st.snow()
+                        # st.snow()
 
                         # Save resume data to database
                         resume_data = {
@@ -1915,7 +1918,8 @@ class ResumeApp:
                             # Add a timeline chart for analysis over time (mock
                             # data for now)
                             st.markdown("### 📈 Analysis Trend")
-                            st.info("This is a conceptual visualization. To implement actual time-based analysis, additional data collection would be needed.")
+                            st.info(
+                                "This is a conceptual visualization. To implement actual time-based analysis, additional data collection would be needed.")
 
                             # Create mock data for timeline
                             import datetime
@@ -2406,7 +2410,7 @@ class ResumeApp:
                                         }
                                     )
                                 # show snowflake effect
-                                st.snow()
+                                # st.snow()
 
                                 # Complete the progress
                                 progress_bar.progress(100)
@@ -2810,7 +2814,7 @@ class ResumeApp:
                                             file_name=f"resume_analysis_{datetime.now().strftime('%Y%m%d_%H%M')}.pdf",
                                             mime="application/pdf",
                                             use_container_width=True,
-                                            on_click=lambda: st.balloons()
+                                            # on_click=lambda: st.balloons()
                                         )
                                     else:
                                         st.error(
@@ -2936,7 +2940,8 @@ class ResumeApp:
 
         # Admin login/logout in sidebar
         with st.sidebar:
-            st_lottie(self.load_lottie_url("https://assets5.lottiefiles.com/packages/lf20_xyadoh9h.json"), height=200, key="sidebar_animation")
+            st_lottie(self.load_lottie_url(
+                "https://assets5.lottiefiles.com/packages/lf20_xyadoh9h.json"), height=200, key="sidebar_animation")
             st.title("Smart Talent Profiling & Resume Assessment Platform")
             st.markdown("---")
 
